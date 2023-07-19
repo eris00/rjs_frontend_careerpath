@@ -7,7 +7,6 @@ function ExpenseForm(props) {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
     const [date, setDate] = useState("");
-    const [expense, setExpense] = useState({});
 
     const titleChangeHandler = (e) => {
         setTitle(e.target.value)
@@ -22,9 +21,13 @@ function ExpenseForm(props) {
     const submitHandler = (e) => {
         e.preventDefault();
         
-        setExpense({title: title, amount: amount, date: new Date(date)});
+        const expenseData = {
+            title: title,
+            amount: +amount,
+            date: new Date(date)
+        }
 
-        props.onSaveExpenseData(expense);
+        props.onSaveExpenseData(expenseData);
 
         setTitle("");
         setAmount("");
